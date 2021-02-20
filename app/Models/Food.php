@@ -33,8 +33,8 @@ class Food extends Model
         return Carbon::parse($updated_at)
             ->getPreciseTimestamp(3);
     }
-    public function getPicturePathAttribute()
-    {
-        return config('app.url') . Storage::url($this->attributes['picturePath']);
-    }
+    // public function getPicturePathAttribute()
+    // {
+    //     // return config('app.url') . Storage::url($this->attributes['picturePath']);
+    // }
 }
