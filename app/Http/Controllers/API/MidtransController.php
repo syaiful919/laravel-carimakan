@@ -18,6 +18,8 @@ class MidtransController extends Controller
     public function callback(Request $request)
     {
         // Set konfigurasi midtrans
+    
+
         Config::$serverKey = config('services.midtrans.serverKey');
         Config::$isProduction = config('services.midtrans.isProduction');
         Config::$isSanitized = config('services.midtrans.isSanitized');
