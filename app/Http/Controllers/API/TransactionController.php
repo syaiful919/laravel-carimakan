@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Midtrans\Config;
@@ -79,6 +80,8 @@ class TransactionController extends Controller
         Config::$isSanitized = config('services.midtrans.isSanitized');
         Config::$is3ds = config('services.midtrans.is3ds');
 
+
+        
         $transaction = Transaction::with(['food','user'])->find($transaction->id);
 
         $midtrans = array(
@@ -97,7 +100,6 @@ class TransactionController extends Controller
         try {
             // Ambil halaman payment midtrans
             $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
-
             $transaction->payment_url = $paymentUrl;
             $transaction->save();
 
